@@ -1,10 +1,9 @@
 import React from 'react'
+import Autorization from '../components/Autorization'
 
 const Register = () => {
     return (
-        <div>
-            <h1>Register</h1>
-        </div>
+        <Autorization method="Register"/>
     )
 }
 

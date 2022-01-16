@@ -9,7 +9,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { makeStyles } from "@mui/styles"
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 import { useAuthContext } from "../context/AuthContextProvider";
 
 const useStyles = makeStyles({
@@ -22,9 +22,12 @@ const useStyles = makeStyles({
 });
 
 export default function Navbar() {
+  const navigate = useNavigate()
+  
     const{currentUser} = useAuthContext()
     const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+ 
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +36,10 @@ export default function Navbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleDasboard =()=>{
+    navigate("/")
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -43,7 +50,8 @@ export default function Navbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          ></IconButton>
+            onClick={handleDasboard}
+          >Social-App </IconButton>
           <Typography
             style={{ fontSize: "2rem", fontFamily: "Girassol" }}
             className={classes.title}
@@ -65,6 +73,7 @@ export default function Navbar() {
               <AccountCircle style={{ fontSize: "2.5rem" }} />
             </IconButton>
             {currentUser?.email ? (
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
